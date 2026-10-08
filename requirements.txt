@@ -1,0 +1,44 @@
+# Eyemouse runtime dependencies -- Windows 10/11, Python 3.10 - 3.12
+#
+# Install with:   pip install -r requirements.txt
+#
+# ---------------------------------------------------------------------------
+# READ THIS BEFORE ADDING opencv-python
+# ---------------------------------------------------------------------------
+# MediaPipe declares a hard dependency on `opencv-contrib-python`, which
+# provides the *same* `cv2` module as `opencv-python`. Installing both into
+# one environment makes the second overwrite files from the first and leaves
+# a mixed install that fails with confusing errors at `import cv2`
+# ("DLL load failed", "module 'cv2' has no attribute ...").
+#
+# `opencv-contrib-python` is a strict superset of `opencv-python` -- every
+# function Eyemouse uses is identical -- so it is listed here *instead*.
+# If you already installed `opencv-python`, fix it with:
+#
+#     pip uninstall -y opencv-python opencv-contrib-python
+#     pip install -r requirements.txt
+# ---------------------------------------------------------------------------
+
+# Face Mesh + Iris and Hands landmarkers.
+# >=0.10.14 is required for the Tasks API (FaceLandmarker / HandLandmarker)
+# that mp_backend.py prefers; it falls back to the legacy mp.solutions API on
+# older versions. Note: mediapipe <0.10.30 additionally requires numpy<2, so
+# let pip resolve numpy rather than pinning it yourself.
+mediapipe>=0.10.14
+
+# Image I/O, drawing the overlay, and the preview window's trackbar sliders.
+# Pulled in by mediapipe anyway; pinned here so the version is explicit.
+opencv-contrib-python>=4.9
+
+# Landmark arrays, the calibration least-squares fit, and the filter state.
+numpy>=1.24
+
+# Cursor movement and clicks. Required by the project brief, and used as the
+# fallback backend. Its FAILSAFE and PAUSE defaults are overridden at import
+# time by mouse_control.py -- see that module's docstring.
+pyautogui>=0.9.54
+
+# Preferred cursor backend: a direct SetCursorPos per frame with no argument
+# validation in the way, which matters at 30-60 Hz. Also supplies the global
+# keyboard hook used for the F6-F9 hotkeys without needing a focused window.
+pynput>=1.7.6

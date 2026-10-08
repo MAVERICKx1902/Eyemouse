@@ -1,0 +1,129 @@
+{
+  "camera": {
+    "index": 0,
+    "width": 640,
+    "height": 480,
+    "fps": 30,
+    "mirror_preview": true,
+    "backend_windows": "dshow"
+  },
+  "performance": {
+    "process_scale": 1.0,
+    "hands_every_n_frames": 3,
+    "show_timing": false,
+    "max_fps": 0,
+    "fps_smoothing": 0.1
+  },
+  "mediapipe": {
+    "min_detection_confidence": 0.5,
+    "min_tracking_confidence": 0.5,
+    "delegate": "cpu"
+  },
+  "gaze": {
+    "gain": 1.0,
+    "offset_x": 0.0,
+    "offset_y": 0.0,
+    "filter": "ma_one_euro",
+    "moving_average_window": 4,
+    "one_euro": {
+      "min_cutoff": 1.1,
+      "beta": 0.012,
+      "d_cutoff": 1.0
+    },
+    "kalman": {
+      "process_noise": 0.001,
+      "measurement_noise": 0.025
+    },
+    "min_face_width": 0.1,
+    "deadzone_px": 2.5,
+    "deadzone_soft": 0.0
+  },
+  "calibration": {
+    "points": 9,
+    "samples_per_point": 30,
+    "discard_first": 8,
+    "model": "quadratic",
+    "ridge": 0.0001,
+    "file": "calibration.json",
+    "auto_load": true,
+    "inset_ratio": 0.12,
+    "point_radius_px": 14,
+    "countdown_sec": 0.6
+  },
+  "clicks": {
+    "gesture": "both",
+    "debounce_ms": 500,
+    "temple": {
+      "radius_ratio": 0.34,
+      "hold_frames": 2,
+      "handedness_mode": "temple_side",
+      "swap_handedness": false,
+      "both_temples_sniper": true
+    },
+    "wink": {
+      "ear_threshold": 0.2,
+      "asymmetry_ratio": 0.6,
+      "open_eye_min": 0.22,
+      "hold_frames": 2,
+      "max_duration_ms": 900
+    },
+    "dwell": {
+      "enabled": true,
+      "ms": 1400,
+      "radius_px": 24,
+      "right_click_ms": 0,
+      "show_progress": true,
+      "edge_guard_ratio": 0.08
+    }
+  },
+  "scroll": {
+    "mode": "edge",
+    "edge": {
+      "band_ratio": 0.06,
+      "dwell_ms": 800,
+      "repeat_ms": 70,
+      "min_amount": 1,
+      "max_amount": 8,
+      "accelerate": true
+    },
+    "palm": {
+      "toggle_ms": 400,
+      "open_fingers": 4,
+      "exit_after_ms": 6000,
+      "px_per_click": 55.0,
+      "max_clicks_per_event": 8.0
+    }
+  },
+  "precision": {
+    "sniper_factor": 0.25,
+    "sniper_key": "ctrl",
+    "smoothing_boost": 2.2
+  },
+  "mouse": {
+    "backend": "auto",
+    "screen_inset_px": 6.0,
+    "dpi_aware": true,
+    "clamp_to_screen": true
+  },
+  "hotkeys": {
+    "recalibrate": "f8",
+    "toggle_tracking": "f7",
+    "toggle_sniper": "f6",
+    "save_config": "f9",
+    "quit": "esc",
+    "quit_alt": "q"
+  },
+  "overlay": {
+    "show": true,
+    "width": 980,
+    "draw_iris": true,
+    "draw_face": false,
+    "draw_hands": true,
+    "draw_temple_zones": true,
+    "sliders": true,
+    "flash_ms": 320,
+    "hud": true,
+    "desktop_dot": false,
+    "desktop_dot_size": 26
+  }
+}
