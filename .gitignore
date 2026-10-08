@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Test / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+coverage/
+htmlcov/
+
+# Eyemouse runtime artifacts
+# MediaPipe model bundles are large binaries fetched by tools/download_models.py
+models/*.task
+models/*.tflite
+# Local calibration + config written at runtime.
+# calibration.json is per-user (it encodes *your* eyes on *your* monitor at
+# *your* desk), so it must never be committed.
+_sim_calibration.json
+calibration.json
+calibration.json.tmp
+config.json.tmp
+
+# OS
+Thumbs.db
+.DS_Store
